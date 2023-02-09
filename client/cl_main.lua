@@ -99,7 +99,20 @@ end
 --- Creates a random drop off location
 local CreateDropOff = function()
 	hasDropOff = true
+	if Config.Phone == "gks" then
+		TriggerEvent('gksphone:notifi', {title = "Moonshine", message = "Make your way to the drop-off..", img= '/html/static/img/icons/messages.png', duration = 5000})
+	end
+	if Config.Phone == "qb-phone" then
 	TriggerEvent('qb-phone:client:CustomNotification', 'CURRENT', "Make your way to the drop-off..", 'fas fa-capsules', '#3480eb', 8000)
+	end
+	if Config.Phone == "qs-smartphone" then
+		TriggerEvent('qs-smartphone:client:notify', {
+			title = 'Moonshine',
+			text = 'Make your way to the drop-off..',
+			icon = "./img/apps/whatsapp.png",
+			timeout = 1500
+		})
+	end
 	dropOffCount += 1
 	local randomLoc = Config.Locations[math.random(#Config.Locations)]
 	-- Blip
@@ -112,7 +125,20 @@ local CreateDropOff = function()
 	dropOffArea:onPlayerInOut(function(isPointInside, point)
 		if isPointInside then
 			if oxyPed == nil then
+				if Config.Phone == "gks" then
+					TriggerEvent('gksphone:notifi', {title = "Moonshine", message = "Make the delivery...", img= '/html/static/img/icons/messages.png', duration = 5000})
+				end
+				if Config.Phone == "qb-phone" then
 				TriggerEvent('qb-phone:client:CustomNotification', 'CURRENT', "Make the delivery..", 'fas fa-capsules', '#3480eb', 8000)
+			end
+			if Config.Phone == "qs-smartphone" then
+				TriggerEvent('qs-smartphone:client:notify', {
+					title = 'Moonshine',
+					text = 'Make the delivery...',
+					icon = "./img/apps/whatsapp.png",
+					timeout = 1500
+				})
+			end
 				CreateDropOffPed(randomLoc)
 			end
 		end
@@ -123,7 +149,20 @@ end
 local StartOxyrun = function()
 	if started then return end
 	started = true
+	if Config.Phone == "gks" then
+		TriggerEvent('gksphone:notifi', {title = "Moonshine", message = "Wait for a new location..", img= '/html/static/img/icons/messages.png', duration = 5000})
+	end
+	if Config.Phone == "qs-smartphone" then
+		TriggerEvent('qs-smartphone:client:notify', {
+			title = 'Moonshine',
+			text = 'Wait for a new location..',
+			icon = "./img/apps/whatsapp.png",
+			timeout = 1500
+		})
+	end
+	if Config.Phone == "qb-phone" then
 	TriggerEvent('qb-phone:client:CustomNotification', 'CURRENT', "Wait for a new location..", 'fas fa-capsules', '#3480eb', 8000)
+	end
 	while started do
 		Wait(4000)
 		if not hasDropOff then
@@ -201,11 +240,38 @@ RegisterNetEvent('qb-moonshine:client:DeliverShine', function()
 		dropOffArea:destroy()
 		Wait(2000)
 		if dropOffCount == Config.RunAmount then
-			TriggerEvent('qb-phone:client:CustomNotification', 'CURRENT', "You are done delivering, go back to the pharmacy..", 'fas fa-capsules', '#3480eb', 20000)
+			if Config.Phone == "gks" then
+				TriggerEvent('gksphone:notifi', {title = "Moonshine", message = "You are done delivery, go back to the spot...", img= '/html/static/img/icons/messages.png', duration = 5000})
+			end
+			if Config.Phone == "qb-phone"then
+			TriggerEvent('qb-phone:client:CustomNotification', 'CURRENT', "You are done delivering, go back to the spot..", 'fas fa-capsules', '#3480eb', 20000)
+			end
+			if Config.Phone == "qs-smartphone" then
+				TriggerEvent('qs-smartphone:client:notify', {
+					title = 'Moonshine',
+					text = 'You are done delivering, go back to the spot..',
+					icon = "./img/apps/whatsapp.png",
+					timeout = 1500
+				})
+			end
 			started = false
 			dropOffCount = 0
 		else
+			if Config.Phone == "gks" then
+				TriggerEvent('gksphone:notifi', {title = "Moonshine", message = "Delivery was good, you will be updated with the next drop-off..", img= '/html/static/img/icons/messages.png', duration = 5000})
+			end
+			if Config.Phone == "qb-phone" then
 			TriggerEvent('qb-phone:client:CustomNotification', 'CURRENT', "Delivery was good, you will be updated with the next drop-off..", 'fas fa-capsules', '#3480eb', 20000)
+			end
+			if Config.Phone == "qs-smartphone" then
+				TriggerEvent('qs-smartphone:client:notify', {
+					title = 'Moonshine',
+					text = 'Delivery was good, you will be updated with the next drop-off..',
+					icon = "./img/apps/whatsapp.png",
+					timeout = 1500
+				})
+			end
+
 		end
 		DeleteOxyped()
 		hasDropOff = false
@@ -606,3 +672,4 @@ CreateThread(function()
         end
     end)
 end)
+
