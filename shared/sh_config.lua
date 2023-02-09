@@ -1,6 +1,6 @@
 Config = {}
 
-
+Config.Phone = "gks" -- either qb-phone - qs-smartphone or gks
 Config.StartLocation = vector4(1401.18, 3601.01, 35.03, 204.22) -- Start location for Moonshine run (gives the corn needed to make mash)
 Config.RunAmount = math.random(7, 10) -- How many drop-offs the player can make each run.
 Config.StartShinePayment = 1000 -- How much you pay at the start to start the run
