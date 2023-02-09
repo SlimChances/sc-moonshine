@@ -33,4 +33,4 @@ add your phone to sh_config.lua under line 3 to the phone you use. Example: if y
 all things in the shared/sh_config.lua are configurable.
 
 
-Preview https://streamable.com/0qvhz9
+Preview https://youtu.be/UprLh6oaafk
