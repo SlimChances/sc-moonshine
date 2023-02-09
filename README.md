@@ -28,5 +28,7 @@ add qb-moonshine to your resources folder
 
 restart your server and enjoy.
 
+add your phone to sh_config.lua under line 3 to the phone you use. Example: if you use qb-phone put Config.Phone = "qb-phone"
+
 all things in the shared/sh_config.lua are configurable.
 
